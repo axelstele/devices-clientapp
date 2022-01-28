@@ -1,18 +1,20 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { devices } from 'redux/reducers/devices';
 import {
   Form, Input, SubmitInput, Select,
 } from 'styled/form';
 
 import {
-  ADD, DEVICE, EDIT, TYPE_OPTIONS,
+  ADD, DEVICE, EDIT, TYPE_OPTIONS, BACK,
 } from 'utils/constants';
+import { BackButton } from 'styled/button';
 
 function Device() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { state } = useLocation();
 
   const [systemName, setSystemName] = useState('');
@@ -30,6 +32,10 @@ function Device() {
 
   const handleHddCapacityChange = ({ target: { value } }) => {
     setHddCapacity(value);
+  };
+
+  const handleBack = () => {
+    history.push('/');
   };
 
   const handleSubmit = (e) => {
@@ -57,6 +63,7 @@ function Device() {
   return (
     <>
       <h3>{`${state?.device ? EDIT : ADD} ${DEVICE}`}</h3>
+      <BackButton type="button" onClick={handleBack}>{BACK}</BackButton>
       <Form onSubmit={handleSubmit}>
         <Input placeholder="System Name" type="text" id="systemName" name="systemName" value={systemName} onChange={handleSystemNameChange} required />
         <br />
@@ -74,7 +81,6 @@ function Device() {
         <SubmitInput type="submit" value={state?.device ? EDIT : ADD} />
       </Form>
     </>
-
   );
 }
 

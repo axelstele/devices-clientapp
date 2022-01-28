@@ -14,6 +14,9 @@ export function* callEditDevice({
     yield call(edit, {
       id, system_name: systemName, type, hdd_capacity: hddCapacity,
     });
+    yield put(devices.editSuccess({
+      id, system_name: systemName, type, hdd_capacity: hddCapacity,
+    }));
     yield put(push('/'));
   } catch {
     alert('An error ocurred');

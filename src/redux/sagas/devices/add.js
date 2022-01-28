@@ -7,7 +7,10 @@ import { push } from 'connected-react-router';
 
 export function* callAddDevice({ payload: { systemName, type, hddCapacity } }) {
   try {
-    yield call(add, { system_name: systemName, type, hdd_capacity: hddCapacity });
+    const { data } = yield call(add, { system_name: systemName, type, hdd_capacity: hddCapacity });
+    yield put(devices.addSuccess({
+      id: data.id, system_name: systemName, type, hdd_capacity: hddCapacity,
+    }));
     yield put(push('/'));
   } catch {
     alert('An error ocurred');

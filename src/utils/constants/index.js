@@ -21,3 +21,4 @@ export const DEVICE = 'Device';
 export const ACTIONS = 'Actions';
 export const DEVICE_TYPE = 'Device Type';
 export const SORT_BY = 'Sort By';
+export const BACK = 'Back';

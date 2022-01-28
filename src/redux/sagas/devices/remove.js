@@ -7,7 +7,7 @@ import { remove } from 'endpoints/devices';
 export function* callRemoveDevice({ payload: { id } }) {
   try {
     yield call(remove, { id });
-    yield put(devices.get());
+    yield put(devices.removeSuccess({ id }));
   } catch {
     // TODO handle error
   }

@@ -28,3 +28,8 @@ export const EditButton = styled(Button)`
 export const DeleteButton = styled(Button)`
     background: #C05050;
 `;
+
+export const BackButton = styled(Button)`
+    background: #50C0B8;
+    height: 60px;
+`;
